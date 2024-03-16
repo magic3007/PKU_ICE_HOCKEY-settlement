@@ -106,4 +106,4 @@ df["权重"] = weights
 df["结算"] = df["应付"] - df["押金"]
 
 # %%
-df.to_csv(output_file, index=False)
+df.to_csv(output_file, index=False, encoding="utf_8_sig")
