@@ -51,6 +51,7 @@ print("Total fee        : ", total_fee)
 
 # %%
 df["押金"] = 0
+df["level"] = 0
 df["应付"] = 0
 # %%
 deposit = 1.0 * ESTIMATED_ICE_FEE * num_days / num_trainees
@@ -89,6 +90,7 @@ for idx, line in df.iterrows():
         l = min(l + (c1 - 2), 4)
     # 临时请假 和 未出勤未请假, 每多一次，提升一个level
     l = min(l + c3 + c4, 4)
+    df.loc[idx, "level"] = levels[l]
     weights[idx] = num_count * levels[l]
 # %%
 
