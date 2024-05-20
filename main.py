@@ -12,14 +12,16 @@ levels = [0.85, 0.90, 0.95, 0.98, 1]
 parser = argparse.ArgumentParser(description="Settlement for PKU ICE HOCKEY")
 parser.add_argument("-i", type=str, help="input csv file", default="example.csv")
 parser.add_argument("-o", type=str, help="output csv file", default="example.out.csv")
-parser.add_argument("-e", type=int, help="estimated ice fee", default=1500)
+parser.add_argument("-d", type=int, help="security deposit per person", required=True)
+
 args = parser.parse_args()
 input_file = args.i
 output_file = args.o
-ESTIMATED_ICE_FEE = args.e
+deposit = args.d
 
 # input_file = "example.csv"
 # output_file = "example.out.csv"
+# deposit = 600
 
 if not input_file.endswith(".csv"):
     raise ValueError("input file must be a csv file")
@@ -40,21 +42,17 @@ total_fee = (
     .values[0]
 )
 
-assert num_days == 8
-
-print("input_file       : ", input_file)
-print("output_file      : ", output_file)
-print("#trainees        : ", num_trainees)
-print("#days            : ", num_days)
-print("Estimated fee    : ", ESTIMATED_ICE_FEE * num_days)
-print("Total fee        : ", total_fee)
+print("input_file           : ", input_file)
+print("output_file          : ", output_file)
+print("#trainees            : ", num_trainees)
+print("#days                : ", num_days)
+print("deposit per person   : ", deposit)
+print("Total fee            : ", total_fee)
 
 # %%
 df["押金"] = 0
 df["level"] = 0
 df["应付"] = 0
-# %%
-deposit = 1.0 * ESTIMATED_ICE_FEE * num_days / num_trainees
 
 for idx, line in df.iterrows():
     if line["本周期是否全部不参加"] == "是":

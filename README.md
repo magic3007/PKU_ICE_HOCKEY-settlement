@@ -15,14 +15,8 @@
   - `未出勤未请假`
 - 训练日的格式必须形如`xxxx.xx.xx`.
 
-单次冰时费的默认价格为`1500`，用于计算押金。
 
 配置完成统计表格后，按照以下方式运行程序：
 ```bash
-python main.py -i <input file> -o <output file>
-```
-
-若需调整单次冰时费的默认价格，可通过命令行参数传入：
-```bash
-python main.py -i <input file> -o <output file> -e <estimated ice fee>
+python main.py -i <input file> -o <output file> -d <security deposit per person>
 ```
