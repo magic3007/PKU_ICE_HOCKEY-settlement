@@ -9,19 +9,19 @@ import argparse
 levels = [0.85, 0.90, 0.95, 0.98, 1]
 
 # %%
-# parser = argparse.ArgumentParser(description="Settlement for PKU ICE HOCKEY")
-# parser.add_argument("-i", type=str, help="input csv file", default="example.csv")
-# parser.add_argument("-o", type=str, help="output csv file", default="example.out.csv")
-# parser.add_argument("-d", type=int, help="security deposit per person", required=True)
+parser = argparse.ArgumentParser(description="Settlement for PKU ICE HOCKEY")
+parser.add_argument("-i", type=str, help="input csv file", default="example.csv")
+parser.add_argument("-o", type=str, help="output csv file", default="example.out.csv")
+parser.add_argument("-d", type=int, help="security deposit per person", required=True)
 
-# args = parser.parse_args()
-# input_file = args.i
-# output_file = args.o
-# deposit = args.d
+args = parser.parse_args()
+input_file = args.i
+output_file = args.o
+deposit = args.d
 
-input_file = "icefee_may.csv"
-output_file = "icefee_may.out.csv"
-deposit = 600
+# input_file = "icefee_may.csv"
+# output_file = "icefee_may.out.csv"
+# deposit = 600
 
 if not input_file.endswith(".csv"):
     raise ValueError("input file must be a csv file")
