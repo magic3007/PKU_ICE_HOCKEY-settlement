@@ -9,19 +9,19 @@ import argparse
 levels = [0.85, 0.90, 0.95, 0.98, 1]
 
 # %%
-parser = argparse.ArgumentParser(description="Settlement for PKU ICE HOCKEY")
-parser.add_argument("-i", type=str, help="input csv file", default="example.csv")
-parser.add_argument("-o", type=str, help="output csv file", default="example.out.csv")
-parser.add_argument("-d", type=int, help="security deposit per person", required=True)
+# parser = argparse.ArgumentParser(description="Settlement for PKU ICE HOCKEY")
+# parser.add_argument("-i", type=str, help="input csv file", default="example.csv")
+# parser.add_argument("-o", type=str, help="output csv file", default="example.out.csv")
+# parser.add_argument("-d", type=int, help="security deposit per person", required=True)
 
-args = parser.parse_args()
-input_file = args.i
-output_file = args.o
-deposit = args.d
+# args = parser.parse_args()
+# input_file = args.i
+# output_file = args.o
+# deposit = args.d
 
-# input_file = "example.csv"
-# output_file = "example.out.csv"
-# deposit = 600
+input_file = "icefee_may.csv"
+output_file = "icefee_may.out.csv"
+deposit = 600
 
 if not input_file.endswith(".csv"):
     raise ValueError("input file must be a csv file")
@@ -82,7 +82,7 @@ for idx, line in df.iterrows():
         df.loc[idx, "应付"] = num_count * 90
         trial_trainee_fee += num_count * 90
         continue
-    l = min(8 - num_count, 4)
+    l = min(num_days - num_count, 4)
     if c1 > 2:
         # 请假但出勤次数>2, 每多一次，提升一个level
         l = min(l + (c1 - 2), 4)
@@ -107,3 +107,5 @@ df["结算"] = df["应付"] - df["押金"]
 
 # %%
 df.to_csv(output_file, index=False, encoding="utf_8_sig")
+
+#%%
